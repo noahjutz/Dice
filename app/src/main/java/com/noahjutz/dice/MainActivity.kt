@@ -30,11 +30,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
-        val random = Random()
+        // Rotate die effect
+        icon_die.animate().setDuration(500).rotationBy(180f)
 
+        // Random number generation
+        val random = Random()
         fun randDie(max: Int) : Int {
             return random.nextInt(max) + 1
         }
+
+        // Die icon selection
         when(randDie(dieSides)) {
             1 -> icon_die.setImageResource(R.drawable.ic_dice_1)
             2 -> icon_die.setImageResource(R.drawable.ic_dice_2)
@@ -43,6 +48,9 @@ class MainActivity : AppCompatActivity() {
             5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
             6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
         }
+
+        // 2s Cooldown
+        TODO("Cooldown for button to keep die rotation")
     }
 
 }
