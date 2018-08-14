@@ -2,6 +2,7 @@ package com.noahjutz.dice
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,8 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
+
         // Rotate die effect
-        icon_die.animate().setDuration(500).rotationBy(180f)
+        icon_die.animate().setDuration(350).rotationBy(180f)
 
         // Random number generation
         val random = Random()
@@ -40,17 +42,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Die icon selection
-        when(randDie(dieSides)) {
-            1 -> icon_die.setImageResource(R.drawable.ic_dice_1)
-            2 -> icon_die.setImageResource(R.drawable.ic_dice_2)
-            3 -> icon_die.setImageResource(R.drawable.ic_dice_3)
-            4 -> icon_die.setImageResource(R.drawable.ic_dice_4)
-            5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
-            6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
-        }
+        Handler().postDelayed({
+            when(randDie(dieSides)) {
+                1 -> icon_die.setImageResource(R.drawable.ic_dice_1)
+                2 -> icon_die.setImageResource(R.drawable.ic_dice_2)
+                3 -> icon_die.setImageResource(R.drawable.ic_dice_3)
+                4 -> icon_die.setImageResource(R.drawable.ic_dice_4)
+                5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
+                6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
+            }
+        }, 175)
 
-        // 2s Cooldown
-        TODO("Cooldown for button to keep die rotation")
+        // Disable button for 30s
+        button_roll.isEnabled = false
+
+        // Re-enable button
+        Handler().postDelayed({
+            button_roll.isEnabled = true
+        }, 30000)
     }
 
 }
