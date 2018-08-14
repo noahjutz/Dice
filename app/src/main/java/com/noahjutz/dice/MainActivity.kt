@@ -32,8 +32,12 @@ class MainActivity : AppCompatActivity() {
 
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
 
-        // Rotate die effect
-        icon_die.animate().setDuration(350).rotationBy(180f)
+        // Roll die effect
+        icon_die.animate().setDuration(1000).rotationBy(360f)
+        icon_die.animate().setDuration(500).translationYBy(-72f)
+        Handler().postDelayed({
+            icon_die.animate().setDuration(500).translationYBy(72f)
+        }, 500)
 
         // Random number generation
         val random = Random()
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
                 6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
             }
-        }, 175)
+        }, 1000)
 
         // Disable button for 30s
         button_roll.isEnabled = false
@@ -59,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         // Re-enable button
         Handler().postDelayed({
             button_roll.isEnabled = true
-        }, 30000)
+        }, 1000)
     }
 
 }
