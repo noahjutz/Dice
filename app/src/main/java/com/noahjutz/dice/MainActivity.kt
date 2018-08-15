@@ -1,5 +1,6 @@
 package com.noahjutz.dice
 
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -11,14 +12,19 @@ import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var mp: MediaPlayer
     var dieSides = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Display initial side count
         text_sides.text = resources.getString(R.string.seekbar_progress, dieSides)
 
+
+
+        // Seekbar sides listener
         seekbar_sides.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -31,6 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        // MediaPlayer for sound
+        mp = MediaPlayer.create (this, R.raw.roll_sound)
 
         // Roll die effect
         icon_die.animate().setDuration(1000).rotationBy(360f)
@@ -57,13 +66,19 @@ class MainActivity : AppCompatActivity() {
             }
         }, 1000)
 
-        // Disable button for 30s
+        // Disable button for 1s
         button_roll.isEnabled = false
-
-        // Re-enable button
         Handler().postDelayed({
             button_roll.isEnabled = true
+
+            // Play sound
+            mp.start()
         }, 1000)
+    }
+
+    override fun onDestroy () {
+        super.onDestroy ()
+        mp.release ()
     }
 
 }
