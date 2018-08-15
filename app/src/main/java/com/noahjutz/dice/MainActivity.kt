@@ -38,15 +38,12 @@ class MainActivity : AppCompatActivity() {
 
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
 
-        // MediaPlayer for sound
+        // Sound effect
         mp = MediaPlayer.create (this, R.raw.roll_sound)
+        mp.start()
 
         // Roll die effect
-        icon_die.animate().setDuration(1000).rotationBy(360f)
-        icon_die.animate().setDuration(500).translationYBy(-72f)
-        Handler().postDelayed({
-            icon_die.animate().setDuration(500).translationYBy(72f)
-        }, 500)
+        icon_die.animate().setDuration(400).rotationBy(180f)
 
         // Random number generation
         val random = Random()
@@ -64,16 +61,16 @@ class MainActivity : AppCompatActivity() {
                 5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
                 6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
             }
-        }, 1000)
+        }, 400)
 
-        // Disable button for 1s
+        // Disable button
         button_roll.isEnabled = false
         Handler().postDelayed({
             button_roll.isEnabled = true
 
-            // Play sound
-            mp.start()
-        }, 1000)
+            // Release mp
+            mp.release()
+        }, 400)
     }
 
     override fun onDestroy () {
