@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_dice_outline" />
+        app:srcCompat="@drawable/ic_dice_blank" />
 
     <Button
         android:id="@+id/button_roll"

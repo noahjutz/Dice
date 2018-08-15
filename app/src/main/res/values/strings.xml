@@ -3,5 +3,4 @@
     <string name="roll_die">roll</string>
     <string name="die_desc" >Random die</string>
     <string name="seekbar_progress">Die sides: %d</string>
-    <string name="random_number">Random number: %d</string>
 </resources>
