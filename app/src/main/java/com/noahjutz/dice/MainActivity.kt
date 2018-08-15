@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     fun dieRoll(@Suppress("UNUSED_PARAMETER")view: View) {
 
         // Reset icon
-        icon_die.setImageResource(R.drawable.ic_dice_outline)
+        icon_die.setImageResource(R.drawable.ic_dice_blank)
 
         // Sound effect
         mp = MediaPlayer.create (this, R.raw.roll_sound)

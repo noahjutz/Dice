@@ -118,8 +118,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_check_box_outline_blank_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\noahj\Desktop\dice\svg\dice-6.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_dice_blank" />
+                            <entry key="sourceFile" value="C:\Users\noahj\Desktop\dice\Artboard 1.svg" />
                           </map>
                         </option>
                       </PersistentState>
