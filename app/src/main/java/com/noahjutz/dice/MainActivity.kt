@@ -30,8 +30,12 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Update dieSides variable and display it
                 dieSides = (seekbar_sides.progress+2)
                 text_sides.text = resources.getString(R.string.seekbar_progress, dieSides)
+
+                // Reset icon
+                icon_die.setImageResource(R.drawable.ic_dice_blank)
             }
         })
     }
@@ -42,21 +46,24 @@ class MainActivity : AppCompatActivity() {
         icon_die.setImageResource(R.drawable.ic_dice_blank)
 
         // Sound effect
-        mp = MediaPlayer.create (this, R.raw.roll_sound)
+        mp = MediaPlayer.create(this, R.raw.roll_sound)
         mp.start()
 
         // Roll die effect
         icon_die.animate().setDuration(400).rotationBy(180f)
 
+        // Disable button
+        button_roll.isEnabled = false
+
         // Random number generation
         val random = Random()
-        fun randDie(max: Int) : Int {
+        fun randDie(max: Int): Int {
             return random.nextInt(max) + 1
         }
 
         // Die icon selection
         Handler().postDelayed({
-            when(randDie(dieSides)) {
+            when (randDie(dieSides)) {
                 1 -> icon_die.setImageResource(R.drawable.ic_dice_1)
                 2 -> icon_die.setImageResource(R.drawable.ic_dice_2)
                 3 -> icon_die.setImageResource(R.drawable.ic_dice_3)
@@ -64,11 +71,8 @@ class MainActivity : AppCompatActivity() {
                 5 -> icon_die.setImageResource(R.drawable.ic_dice_5)
                 6 -> icon_die.setImageResource(R.drawable.ic_dice_6)
             }
-        }, 400)
 
-        // Disable button
-        button_roll.isEnabled = false
-        Handler().postDelayed({
+            // Re-enable button
             button_roll.isEnabled = true
 
             // Release mp
