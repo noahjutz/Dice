@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.animation.AlphaAnimation
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.Random
@@ -20,16 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Action bar / Toolbar
-        setSupportActionBar(findViewById(R.id.my_toolbar))
-
         // Display initial side count
         text_sides.text = resources.getString(R.string.seekbar_progress, dieSides)
+
+
 
         // Seekbar sides listener
         seekbar_sides.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Update dieSides variable and display it
                 dieSides = (seekbar_sides.progress+2)
